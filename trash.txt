@@ -1,0 +1,28 @@
+predict_path= r"E:\Neuro\archive\xray_dataset_covid19\test\NORMAL\NORMAL2-IM-0073-0001.jpeg"
+#predict_path= r"E:\Neuro\archive\xray_dataset_covid19\test\PNEUMONIA\SARS-10.1148rg.242035193-g04mr34g0-Fig8c-day10.jpeg"
+
+#E:\Neuro\archive
+my_image = image.load_img(predict_path, target_size=(1000,1000,3))
+my_image = np.expand_dims(my_image, axis = 0)
+
+print(my_image)
+
+predictions = model.predict_generator(my_image) > 0.5
+print(predictions[0][0])
+print(predictions)
+
+md_gen = float(model.predict_generator(my_image))
+print(md_gen)
+
+
+
+
+
+
+
+#Create dir
+directory = "Predict"
+parent_dir = r"E:\Neuro\archive"
+path_pre = os.path.join(parent_dir, directory)
+os.mkdir(path_pre)
+print("Directory '% s' created" % directory)
